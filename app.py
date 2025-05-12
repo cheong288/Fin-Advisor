@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-api = 'AIzaSyA6xgtZd1jSdu9Rf1jg0xTK5mYSjw6eKK0'
+api = 'dummy'
 
 genai.configure(api_key=api)
 model = genai.GenerativeModel("gemini-pro")
