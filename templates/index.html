@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FinGPT Advisor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <h1>FinGPT Advisor</h1>
+
+  <form method="POST" onsubmit="showSpinner()">
+    <label for="prompt">Enter your financial question:</label><br>
+    <textarea name="prompt" placeholder="e.g., What can I learn from this income statement?"></textarea><br>
+    <button type="submit">Get Insight</button>
+  </form>
+
+  <!-- Spinner -->
+  <div id="spinner" style="display: none;">
+    <div class="loader"></div>
+    <p>Generating insight...</p>
+  </div>
+
+  {% if result %}
+    <hr>
+    <h2>AI-Generated Insight:</h2>
+    <div class="result">{{ result }}</div>
+  {% endif %}
+
+  <script>
+    function showSpinner() {
+      document.getElementById('spinner').style.display = 'block';
+    }
+  </script>
+</body>
