@@ -1,13 +1,19 @@
 from flask import Flask, request, render_template
 import google.generativeai as genai
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
+api_key = os.getenv("GEMINI_API_KEY")
+
+if not api_key:
+    raise EnvironmentError("GEMINI_API_KEY not found in .env file.")
 
 app = Flask(__name__)
 
-api = 'dummy'
+genai.configure(api_key=api_key)
 
-genai.configure(api_key=api)
-model = genai.GenerativeModel("gemini-pro")
+model = genai.GenerativeModel("gemini-1.5-flash")
 
 @app.route("/", methods=["GET", "POST"])
 def index():
